@@ -68,6 +68,7 @@ Use one mass unit throughout; the sheet does not explicitly label units.
 
 The BP curve starts at 0% and 36 °C and ends at the corresponding recovery and 744 °C. These are computational reference outputs for the stated settings, not an independent analytical QC pass.
 
+The example assumes Blank 1 applies to the standard and Blank 2 to the samples. Laboratory applicability of that mapping and the saved calibration must be established for scientific use. Polywax filenames carry 2025 dates and bitumen filenames carry 2026 dates; this example loads the saved calibration rather than rebuilding it from those traces.
 
 ## Illustrated Bitumen 1 run
 
