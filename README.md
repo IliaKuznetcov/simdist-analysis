@@ -73,6 +73,8 @@ Use the same mass unit throughout. Response scaling assumes comparable injection
 3. Integrate the corrected sample signal between those boundaries. A piecewise-linear signal integral includes partial acquisition intervals at bin edges.
 4. For the BP curve, find the retention time at each cumulative-recovery level using the same integral, then convert time to boiling point with PCHIP interpolation of the calibration points.
 
+**PCHIP** means *Piecewise Cubic Hermite Interpolating Polynomial*. It draws a smooth curve through the calibration points while preserving their increasing trend, without introducing artificial overshoot between points. Here it converts retention time to boiling point within the calibrated range; extrapolation beyond that range is handled separately below.
+
 ### High-carbon extension
 
 When enabled, the app fits a quadratic in the natural logarithm of carbon number to the high-carbon calibration points (C44 and above by default):
