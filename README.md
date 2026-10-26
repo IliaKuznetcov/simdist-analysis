@@ -2,6 +2,16 @@
 
 Python/PySide6 desktop application for processing high-temperature gas chromatography data into n-paraffin-equivalent carbon distributions and boiling-point–recovery curves. Developed by Ilia Kuznetcov for heavy-hydrocarbon research.
 
+## From chromatogram to engineering result
+
+The workflow turns detector measurements into an interpretable heavy-hydrocarbon distribution: review standard peaks, map retention time to carbon number and boiling point, inspect a gravimetric-blend reference comparison, and process the unknown sample.
+
+![Bitumen 1 carbon distribution and cumulative recovery](docs/images/bitumen_1_distribution.png)
+
+*Bitumen 1: the captured run reports 60.282% recovery within C5–C112. Blue bars show recovery per carbon interval; the red curve accumulates the same bin contributions. This is selected-range recovery, not recovery normalized to 100%.*
+
+The example demonstrates experimental data processing, numerical integration, interactive scientific software, and explicit handling of calibration limits. See [EXAMPLE.md](EXAMPLE.md) for settings and image captions, and [PRESENTATION.md](PRESENTATION.md) for a short technical walkthrough.
+
 ## Features
 
 - Interactive retention-standard and Polywax calibration; JSON import/export.
