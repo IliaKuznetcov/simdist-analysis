@@ -1110,6 +1110,12 @@ class CalibrationTab(QWidget):
             self.selected_peaks_df = self.candidate_peaks_df.copy()
             self.reassign_selected_peaks()
             self.update_all_views()
+            
+            self.selected_peaks_df = self.candidate_peaks_df.copy()
+            self.reassign_selected_peaks()
+            self.update_all_views()
+            self.reset_peak_view()
+
 
         except Exception as e:
             show_error(self, str(e))
@@ -1344,9 +1350,7 @@ class CalibrationTab(QWidget):
         if "Source" not in self.selected_peaks_df.columns:
             self.selected_peaks_df["Source"] = "Imported"
 
-        self.update_table_from_selected()
-        self.update_calibration_plot()
-        self.calibration_changed.emit()
+        self.update_all_views()
 
     def get_dataframe(self) -> pd.DataFrame:
         if self.selected_peaks_df.empty:
