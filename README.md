@@ -73,6 +73,36 @@ Use the same mass unit throughout. Response scaling assumes comparable injection
 3. Integrate the corrected sample signal between those boundaries. A piecewise-linear signal integral includes partial acquisition intervals at bin edges.
 4. For the BP curve, find the retention time at each cumulative-recovery level using the same integral, then convert time to boiling point with PCHIP interpolation of the calibration points.
 
+### High-carbon extension
+
+When enabled, the app fits a quadratic in the natural logarithm of carbon number to the high-carbon calibration points (C44 and above by default):
+
+$
+f(C)=a+b\ln C+c(\ln C)^2
+$
+
+The least-squares fit is shifted to meet the last calibrated point:
+
+$
+t_{\mathrm{ext}}(C)=f(C)+t_{\max}-f(C_{\max})
+$
+
+Here, C_max and t_max are the last calibrated carbon number and retention time. Predicted times are evaluated at successive integer carbon numbers up to the requested maximum. Each time is constrained to exceed the preceding boundary by at least 0.000001 min. If fewer than three points meet the fitting threshold, the app uses the final calibration points instead; at least three are required.
+
+The extension estimates where additional carbon-bin boundaries fall. It does not generate extra chromatogram signal. Integration boundaries must remain within the recorded acquisition interval.
+
+### Boiling-point extrapolation
+
+This is a separate option. Inside the calibrated interval, temperature follows the PCHIP retention-time/BP curve. Beyond the final point, the app uses a straight line with that curve's endpoint slope:
+
+$
+T_{\mathrm{ext}}(t)=T_{\max}+T'_{\mathrm{PCHIP}}(t_{\max})(t-t_{\max})
+$
+
+The lower endpoint is handled analogously. With BP extrapolation off, values outside the calibrated interval are clamped to the nearest endpoint temperature. Extending carbon bins alone therefore does not provide new calibrated boiling points.
+
+For the supplied calibration, extrapolation starts beyond C112. These predictions depend on the fitted tail and endpoint slope and should be identified as extrapolated results.
+
 Cumulative recovery starts at zero at the lower selected carbon boundary and ends at the selected-range total. Results remain on a sample-mass basis; they are not normalized to 100%. BP mapping uses shape-preserving interpolation of the calibration points. Extension beyond the measured range is an estimate, marked on the plots.
 
 The quantity `100 − selected-range recovery` is material not accounted for within that range, not an independently measured non-eluting residue. Carbon numbers are n-paraffin equivalents, not molecular identification. Blank selection, calibration applicability, baseline treatment, and solvent exclusion affect interpretation. The optional QC comparison does not automatically enforce the reference's `Deviation` tolerances.
