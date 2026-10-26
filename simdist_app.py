@@ -497,6 +497,41 @@ def build_extended_calibration_arrays(
     }
 
 
+def integral_at(time, signal, query):
+    """Exact integral of the linearly interpolated signal, from time[0] to query."""
+    t, y, q = np.asarray(time, float), np.asarray(signal, float), np.asarray(query, float)
+    if t.ndim != 1 or y.shape != t.shape or len(t) < 2:
+        raise ValueError('Time and signal must be matching one-dimensional arrays.')
+    if not np.isfinite(t).all() or not np.isfinite(y).all() or np.any(np.diff(t) <= 0):
+        raise ValueError('Time and signal must be finite; time must increase strictly.')
+    if not np.isfinite(q).all() or np.any(q < t[0]) or np.any(q > t[-1]):
+        raise ValueError('Integration limits must lie within the measured time interval.')
+    cumulative = cumulative_trapezoid(y, t, initial=0.)
+    k = np.clip(np.searchsorted(t, q, side='right') - 1, 0, len(t)-2)
+    delta = q - t[k]
+    slope = (y[k+1] - y[k]) / (t[k+1] - t[k])
+    return cumulative[k] + y[k]*delta + .5*slope*delta**2
+
+
+def inverse_integral(time, signal, areas):
+    """Invert the same integral for a nonnegative signal, including zero plateaus."""
+    t, y, a = np.asarray(time, float), np.asarray(signal, float), np.asarray(areas, float)
+    total = float(integral_at(t, y, t[-1]))
+    tolerance = 64 * np.finfo(float).eps * max(total, 1.)
+    if np.any(y < 0) or total <= 0 or not np.isfinite(a).all() or np.any(a < -tolerance) or np.any(a > total + tolerance):
+        raise ValueError('Inverse areas must lie in the integral range of a nonnegative signal.')
+    a = np.clip(a, 0., total)
+    c = cumulative_trapezoid(y, t, initial=0.)
+    k = np.clip(np.searchsorted(c, a, side='right') - 1, 0, len(t)-2)
+    delta_area = np.maximum(a-c[k], 0.)
+    slope = (y[k+1] - y[k]) / (t[k+1]-t[k])
+    discriminant = np.maximum(y[k]**2 + 2*slope*delta_area, 0.)
+    denominator = y[k] + np.sqrt(discriminant)
+    delta_time = np.divide(2*delta_area, denominator, out=np.zeros_like(delta_area), where=denominator > 0)
+    out = np.clip(t[k] + delta_time, t[0], t[-1])
+    return np.where(a == 0, t[0], np.where(a == total, t[-1], out))
+
+
 def run_d7169_analysis(inputs: AnalysisInputs, calib_df: pd.DataFrame) -> AnalysisResult:
     t_blank, y_blank = load_chromatogram_excel(inputs.blank_file)
     t_std, y_std = load_chromatogram_excel(inputs.standard_file)
@@ -557,8 +592,6 @@ def run_d7169_analysis(inputs: AnalysisInputs, calib_df: pd.DataFrame) -> Analys
     me = a_smp * rf
     full_rc_total = a_smp * rf * (inputs.m_smp + inputs.m_slsmp) / inputs.m_smp * 100.0
 
-    cdf_sample_percent = cumulative_trapezoid(sample_sub, time, initial=0) * full_rc_total / a_smp
-    pdf_sample_percent = sample_sub * full_rc_total / a_smp
 
     ext = build_extended_calibration_arrays(
         calib_df=calib_df,
@@ -571,61 +604,30 @@ def run_d7169_analysis(inputs: AnalysisInputs, calib_df: pd.DataFrame) -> Analys
     carbon_edges = ext["carbon_edges"]
     retention_time_edges = ext["retention_time_edges"]
 
-    areas = []
-    for i in range(len(retention_time_edges) - 1):
-        start = retention_time_edges[i]
-        end = retention_time_edges[i + 1]
-
-        start_idx = np.searchsorted(time, start, side="left")
-        end_idx = np.searchsorted(time, end, side="right")
-
-        t_bin = time[start_idx:end_idx]
-        y_bin = pdf_sample_percent[start_idx:end_idx]
-
-        if len(t_bin) < 2:
-            area = 0.0
-        else:
-            area = simpson(y_bin, x=t_bin)
-
-        areas.append(area)
-
-    areas = np.array(areas, dtype=float)
-
-    # Keep the reported recovery, plotted cumulative recovery, and bin totals
-    # numerically consistent by building the cumulative curve directly from the
-    # same bin areas shown on the carbon-distribution plot.
-    cumulative_edges = np.concatenate(([0.0], np.cumsum(areas)))
-
-    final_recovery = float(cumulative_edges[-1]) if len(cumulative_edges) > 0 else 0.0
+    # One piecewise-linear integral defines both carbon bins and the BP curve.
+    # Recovery is zero at the first selected carbon boundary, not time[0].
+    integral_edges = integral_at(time, sample_sub, retention_time_edges)
+    scale = full_rc_total / a_smp
+    cumulative_edges = (integral_edges - integral_edges[0]) * scale
+    areas = np.diff(cumulative_edges)
+    final_recovery = float(cumulative_edges[-1])
     if final_recovery <= 0:
-        raise ValueError("Final cumulative recovery is zero or negative.")
+        raise ValueError("No corrected sample signal lies within the selected carbon range.")
 
-    half_percent_slices = np.arange(0.5, final_recovery + 0.5, 0.5)
-    if len(half_percent_slices) == 0:
-        half_percent_slices = np.array([final_recovery])
-    half_percent_slices[-1] = final_recovery
-
-    cdf_mon = np.maximum.accumulate(cdf_sample_percent)
-    unique_mask = np.append([True], np.diff(cdf_mon) > 1e-12)
-
-    cdf_for_interp = cdf_mon[unique_mask]
-    time_for_interp = time[unique_mask]
-
-    if len(cdf_for_interp) < 2:
-        raise ValueError("Cumulative recovery curve could not be interpolated.")
-
-    time_from_recovery = interpolate.interp1d(
-        cdf_for_interp,
-        time_for_interp,
-        bounds_error=False,
-        fill_value=(time_for_interp[0], time_for_interp[-1])
+    half_percent_slices = np.r_[0.0, np.arange(0.5, final_recovery, 0.5), final_recovery]
+    target_areas = integral_edges[0] + half_percent_slices / scale
+    sample_times = inverse_integral(
+        time, sample_sub, np.clip(target_areas, 0.0, a_smp)
     )
-    sample_times = time_from_recovery(half_percent_slices)
-
-    rt_bp_model = ext["rt_bp_model"]
+    sample_times = np.clip(
+        sample_times, retention_time_edges[0], retention_time_edges[-1]
+    )
+    # Explicit endpoints retain the selected calibration/extension boundaries,
+    # including when a flat cumulative segment makes inversion non-unique.
+    sample_times[0] = retention_time_edges[0]
+    sample_times[-1] = retention_time_edges[-1]
     bp_recovery = evaluate_rt_bp_model(
-        sample_times,
-        rt_bp_model=rt_bp_model,
+        sample_times, rt_bp_model=ext["rt_bp_model"],
         extrapolate_bp=inputs.extrapolate_bp
     )
 
@@ -2014,8 +2016,8 @@ class ResultsTab(QWidget):
                 f"Analysis complete.\n"
                 f"RF = {self.result.rf:.6e}\n"
                 f"ME = {self.result.me:.6f}\n"
-                f"Recovery RC = {self.result.rc_total:.3f} %\n"
-                f"Residual = {self.result.residual:.3f} %\n"
+                f"Recovery RC (selected carbon range) = {self.result.rc_total:.3f} %\n"
+                f"Not accounted for within selected range = {self.result.residual:.3f} %\n"
                 f"Measured calibration max = C{self.result.measured_carbon_max}\n"
                 f"Used carbon max = C{self.result.used_carbon_max}\n"
                 f"High-carbon extension used = {extension_text}\n"
