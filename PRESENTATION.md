@@ -36,6 +36,8 @@ R_{\mathrm{range}}=100\,RF\,\frac{M_{\mathrm{smp}}+M_{\mathrm{sol,smp}}}{M_{\mat
 
 Carbon boundaries use linearly interpolated retention times. Integrating between them gives each histogram bar. The BP curve uses the same cumulative integral, with retention times converted to temperature by PCHIP interpolation. See [README.md](README.md#calculation-and-interpretation) for the variable definitions.
 
+PCHIP (*Piecewise Cubic Hermite Interpolating Polynomial*) gives a smooth curve through the calibration points while preserving their increasing trend. This avoids artificial overshoot when converting retention time to boiling point.
+
 ## Optional extrapolation
 
 To extend carbon bins beyond the calibration, the app fits:
