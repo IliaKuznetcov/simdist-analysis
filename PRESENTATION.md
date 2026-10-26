@@ -24,15 +24,15 @@ The selected peaks link retention time to equivalent carbon number and boiling p
 
 The standard's material fraction and blank-corrected area give the response factor:
 
-$
+```math
 RF=\frac{M_{\mathrm{std}}}{M_{\mathrm{std}}+M_{\mathrm{sol,std}}}\frac{1}{A_{\mathrm{std}}}
-$
+```
 
 The sample's material/solvent masses then convert its selected-range area into recovery:
 
-$
+```math
 R_{\mathrm{range}}=100\,RF\,\frac{M_{\mathrm{smp}}+M_{\mathrm{sol,smp}}}{M_{\mathrm{smp}}}\,A_{\mathrm{smp,range}}
-$
+```
 
 Carbon boundaries use linearly interpolated retention times. Integrating between them gives each histogram bar. The BP curve uses the same cumulative integral, with retention times converted to temperature by PCHIP interpolation. See [README.md](README.md#calculation-and-interpretation) for the variable definitions.
 
@@ -40,9 +40,9 @@ Carbon boundaries use linearly interpolated retention times. Integrating between
 
 To extend carbon bins beyond the calibration, the app fits:
 
-$
+```math
 t_r=a+b\ln C+c(\ln C)^2
-$
+```
 
 It uses high-carbon calibration points, shifts the fit to meet the final calibrated point, and keeps predicted times increasing. The fit estimates additional bin boundaries within the recorded run.
 
