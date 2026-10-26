@@ -1,0 +1,429 @@
+[
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 0.13333333333333333,
+    "PeakHeight": 209785.0,
+    "CarbonNumber": 5.0,
+    "BoilingPoint": 36.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 0.14833333333333334,
+    "PeakHeight": 191872.0,
+    "CarbonNumber": 6.0,
+    "BoilingPoint": 69.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 0.155,
+    "PeakHeight": 108652.0,
+    "CarbonNumber": 7.0,
+    "BoilingPoint": 98.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 0.165,
+    "PeakHeight": 68421.0,
+    "CarbonNumber": 8.0,
+    "BoilingPoint": 126.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 0.17,
+    "PeakHeight": 156109.0,
+    "CarbonNumber": 9.0,
+    "BoilingPoint": 151.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 0.22333333333333336,
+    "PeakHeight": 71512.0,
+    "CarbonNumber": 10.0,
+    "BoilingPoint": 174.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 0.34833333333333333,
+    "PeakHeight": 30912.0,
+    "CarbonNumber": 11.0,
+    "BoilingPoint": 196.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 0.5700000000000001,
+    "PeakHeight": 27616.0,
+    "CarbonNumber": 12.0,
+    "BoilingPoint": 216.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 1.0983333333333334,
+    "PeakHeight": 5387.0,
+    "CarbonNumber": 13.0,
+    "BoilingPoint": 235.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 1.715,
+    "PeakHeight": 2815.0,
+    "CarbonNumber": 14.0,
+    "BoilingPoint": 254.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 2.356666666666667,
+    "PeakHeight": 1960.0,
+    "CarbonNumber": 15.0,
+    "BoilingPoint": 271.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 2.986666666666667,
+    "PeakHeight": 1448.0,
+    "CarbonNumber": 16.0,
+    "BoilingPoint": 287.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 3.6100000000000003,
+    "PeakHeight": 1075.0,
+    "CarbonNumber": 17.0,
+    "BoilingPoint": 302.0
+  },
+  {
+    "Source": "Retention Standard",
+    "RetentionTime": 4.171666666666667,
+    "PeakHeight": 941.0,
+    "CarbonNumber": 18.0,
+    "BoilingPoint": 316.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 5.168333333333334,
+    "PeakHeight": 2832.0,
+    "CarbonNumber": 20.0,
+    "BoilingPoint": 344.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 6.1016666666666675,
+    "PeakHeight": 4044.0,
+    "CarbonNumber": 22.0,
+    "BoilingPoint": 369.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 6.968333333333334,
+    "PeakHeight": 6477.0,
+    "CarbonNumber": 24.0,
+    "BoilingPoint": 391.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 7.783333333333334,
+    "PeakHeight": 12212.0,
+    "CarbonNumber": 26.0,
+    "BoilingPoint": 412.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 8.566666666666666,
+    "PeakHeight": 21226.0,
+    "CarbonNumber": 28.0,
+    "BoilingPoint": 431.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 9.311666666666667,
+    "PeakHeight": 34351.0,
+    "CarbonNumber": 30.0,
+    "BoilingPoint": 449.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 10.030000000000001,
+    "PeakHeight": 50577.0,
+    "CarbonNumber": 32.0,
+    "BoilingPoint": 466.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 10.72,
+    "PeakHeight": 66081.0,
+    "CarbonNumber": 34.0,
+    "BoilingPoint": 481.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 11.38,
+    "PeakHeight": 82615.0,
+    "CarbonNumber": 36.0,
+    "BoilingPoint": 496.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 12.021666666666668,
+    "PeakHeight": 97339.0,
+    "CarbonNumber": 38.0,
+    "BoilingPoint": 509.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 12.631666666666668,
+    "PeakHeight": 110050.0,
+    "CarbonNumber": 40.0,
+    "BoilingPoint": 522.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 13.215000000000002,
+    "PeakHeight": 119829.0,
+    "CarbonNumber": 42.0,
+    "BoilingPoint": 534.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 13.776666666666667,
+    "PeakHeight": 123592.0,
+    "CarbonNumber": 44.0,
+    "BoilingPoint": 545.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 14.313333333333334,
+    "PeakHeight": 134648.0,
+    "CarbonNumber": 46.0,
+    "BoilingPoint": 556.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 14.825,
+    "PeakHeight": 136581.0,
+    "CarbonNumber": 48.0,
+    "BoilingPoint": 566.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 15.315000000000001,
+    "PeakHeight": 129687.0,
+    "CarbonNumber": 50.0,
+    "BoilingPoint": 575.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 15.783333333333335,
+    "PeakHeight": 130030.0,
+    "CarbonNumber": 52.0,
+    "BoilingPoint": 584.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 16.228333333333335,
+    "PeakHeight": 123779.0,
+    "CarbonNumber": 54.0,
+    "BoilingPoint": 592.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 16.656666666666666,
+    "PeakHeight": 117029.0,
+    "CarbonNumber": 56.0,
+    "BoilingPoint": 600.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 17.07166666666667,
+    "PeakHeight": 105663.0,
+    "CarbonNumber": 58.0,
+    "BoilingPoint": 608.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 17.46166666666667,
+    "PeakHeight": 95372.0,
+    "CarbonNumber": 60.0,
+    "BoilingPoint": 615.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 17.85,
+    "PeakHeight": 86394.0,
+    "CarbonNumber": 62.0,
+    "BoilingPoint": 622.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 18.21166666666667,
+    "PeakHeight": 75541.0,
+    "CarbonNumber": 64.0,
+    "BoilingPoint": 629.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 18.561666666666667,
+    "PeakHeight": 65488.0,
+    "CarbonNumber": 66.0,
+    "BoilingPoint": 635.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 18.915000000000003,
+    "PeakHeight": 56345.0,
+    "CarbonNumber": 68.0,
+    "BoilingPoint": 641.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 19.235000000000003,
+    "PeakHeight": 47747.0,
+    "CarbonNumber": 70.0,
+    "BoilingPoint": 647.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 19.553333333333335,
+    "PeakHeight": 39269.0,
+    "CarbonNumber": 72.0,
+    "BoilingPoint": 653.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 19.85666666666667,
+    "PeakHeight": 33747.0,
+    "CarbonNumber": 74.0,
+    "BoilingPoint": 658.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 20.151666666666667,
+    "PeakHeight": 27211.0,
+    "CarbonNumber": 76.0,
+    "BoilingPoint": 664.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 20.44,
+    "PeakHeight": 21985.0,
+    "CarbonNumber": 78.0,
+    "BoilingPoint": 670.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 20.725,
+    "PeakHeight": 17599.0,
+    "CarbonNumber": 80.0,
+    "BoilingPoint": 675.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 20.99666666666667,
+    "PeakHeight": 14629.0,
+    "CarbonNumber": 82.0,
+    "BoilingPoint": 681.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 21.268333333333334,
+    "PeakHeight": 12146.0,
+    "CarbonNumber": 84.0,
+    "BoilingPoint": 686.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 21.545,
+    "PeakHeight": 10396.0,
+    "CarbonNumber": 86.0,
+    "BoilingPoint": 691.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 21.808333333333334,
+    "PeakHeight": 9113.0,
+    "CarbonNumber": 88.0,
+    "BoilingPoint": 695.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 22.076666666666668,
+    "PeakHeight": 7965.0,
+    "CarbonNumber": 90.0,
+    "BoilingPoint": 700.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 22.32166666666667,
+    "PeakHeight": 7038.0,
+    "CarbonNumber": 92.0,
+    "BoilingPoint": 704.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 22.576666666666668,
+    "PeakHeight": 6216.0,
+    "CarbonNumber": 94.0,
+    "BoilingPoint": 708.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 22.813333333333336,
+    "PeakHeight": 5679.0,
+    "CarbonNumber": 96.0,
+    "BoilingPoint": 712.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 23.053333333333335,
+    "PeakHeight": 5196.0,
+    "CarbonNumber": 98.0,
+    "BoilingPoint": 716.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 23.303333333333335,
+    "PeakHeight": 4764.0,
+    "CarbonNumber": 100.0,
+    "BoilingPoint": 720.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 23.553333333333335,
+    "PeakHeight": 4448.0,
+    "CarbonNumber": 102.0,
+    "BoilingPoint": 724.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 23.775,
+    "PeakHeight": 4169.0,
+    "CarbonNumber": 104.0,
+    "BoilingPoint": 728.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 23.998333333333335,
+    "PeakHeight": 3895.0,
+    "CarbonNumber": 106.0,
+    "BoilingPoint": 732.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 24.226666666666667,
+    "PeakHeight": 3723.0,
+    "CarbonNumber": 108.0,
+    "BoilingPoint": 736.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 24.433333333333334,
+    "PeakHeight": 3471.0,
+    "CarbonNumber": 110.0,
+    "BoilingPoint": 740.0
+  },
+  {
+    "Source": "Polywax",
+    "RetentionTime": 24.616666666666667,
+    "PeakHeight": 3275.0,
+    "CarbonNumber": 112.0,
+    "BoilingPoint": 744.0
+  }
+]
