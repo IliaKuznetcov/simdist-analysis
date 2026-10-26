@@ -1,16 +1,16 @@
 # SimDist — v1.0.0
 
-Python/PySide6 desktop application for processing high-temperature gas chromatography data into n-paraffin-equivalent carbon distributions and boiling-point–recovery curves. Developed by Ilia Kuznetcov for heavy-hydrocarbon research.
+A Python/PySide6 desktop app for processing high-temperature gas chromatography data from heavy-oil and bitumen samples. It combines calibration, blank correction, mass inputs, plotting, and CSV export. Developed by Ilia Kuznetcov.
 
-## From chromatogram to engineering result
+## Example: Bitumen 1
 
-The workflow turns detector measurements into an interpretable heavy-hydrocarbon distribution: review standard peaks, map retention time to carbon number and boiling point, inspect a gravimetric-blend reference comparison, and process the unknown sample.
+Standard and Polywax peaks link retention time to equivalent carbon number and boiling point. The app then uses a gravimetric standard and the recorded sample masses to calculate recovery.
 
 ![Bitumen 1 carbon distribution and cumulative recovery](docs/images/bitumen_1_distribution.png)
 
-*Bitumen 1: the captured run reports 60.282% recovery within C5–C112. Blue bars show recovery per carbon interval; the red curve accumulates the same bin contributions. This is selected-range recovery, not recovery normalized to 100%.*
+*Bitumen 1: 60.282% recovery within C5–C112. Blue bars show recovery per carbon interval; the red curve shows cumulative recovery.*
 
-The example demonstrates experimental data processing, numerical integration, interactive scientific software, and explicit handling of calibration limits. See [EXAMPLE.md](EXAMPLE.md) for settings and image captions, and [PRESENTATION.md](PRESENTATION.md) for a short technical walkthrough.
+See [EXAMPLE.md](EXAMPLE.md) for settings and instructions, and [PRESENTATION.md](PRESENTATION.md) for an illustrated walkthrough.
 
 ## Features
 
@@ -47,5 +47,5 @@ Cumulative recovery starts at zero at the lower selected carbon boundary and end
 
 The quantity `100 − selected-range recovery` is material not accounted for within that range, not an independently measured non-eluting residue. Carbon numbers are n-paraffin equivalents, not molecular identification. Blank selection, calibration applicability, baseline treatment, and solvent exclusion affect interpretation. The optional QC comparison does not automatically enforce the reference's `Deviation` tolerances.
 
-Research software supporting an ASTM D7169-related workflow; no ASTM compliance certification is claimed. Numerical integration and endpoint checks passed on the supplied examples; the author also checked the corrected app locally on Windows.
+Developed for research using an ASTM D7169-related workflow. Numerical integration and endpoint checks passed on the supplied examples, and the corrected app was checked locally on Windows. Full analytical validation remains separate from these software checks.
 

@@ -1,39 +1,41 @@
-# SimDist: short CMG walkthrough
+# SimDist: processing heavy-hydrocarbon GC data
 
-## GitHub repository description
+## Repository description
 
-Python/PySide6 tool for heavy-hydrocarbon GC analysis: interactive calibration, blank correction, gravimetric scaling, and carbon-equivalent/BP–recovery curves.
+A Python/PySide6 app for processing high-temperature GC data, reviewing calibration peaks, and plotting carbon distributions and boiling-point recovery curves.
 
-## Opening: the problem
+## About the project
 
-“I developed SimDist to turn raw high-temperature GC measurements into interpretable heavy-hydrocarbon distributions through a repeatable desktop workflow.”
+I developed SimDist to simplify the analysis of high-temperature GC measurements from heavy-oil and bitumen samples. It brings calibration, blank correction, mass inputs, plotting, and CSV export into one desktop application.
 
-## 1. Review the calibration peaks
+## Calibration peaks
 
 ![Standard traces and selected peaks](docs/images/calibration_peaks.png)
 
-“First I inspect the standard and Polywax traces, review detected peaks, and correct their assignments interactively. Detection finds candidate maxima; identification comes from the known standards.”
+The standard and Polywax chromatograms provide peaks for calibration. Users can detect peaks automatically, add or remove them, and review the carbon-number assignments before saving the calibration.
 
-## 2. Map measurement to physical coordinates
+## Retention-time calibration
 
-![Retention-time calibration mappings](docs/images/calibration_mapping.png)
+![Retention-time calibration curves](docs/images/calibration_mapping.png)
 
-“The reviewed points connect retention time to n-paraffin-equivalent carbon number and boiling point. I keep the calibrated range explicit and distinguish it from optional extrapolation.”
+The selected peaks link retention time to equivalent carbon number and boiling point. The supplied calibration covers C5–C112, corresponding to 36–744 °C.
 
-## 3. Inspect a reference comparison
+## Gravimetric-blend comparison
 
-![Gravimetric-blend reference comparison](docs/images/gravimetric_reference_comparison.png)
+![Gravimetric blend compared with reference values](docs/images/gravimetric_reference_comparison.png)
 
-“I process a gravimetric blend and compare its BP curve with supplied reference values. The two-rise structure is visible, but the reported errors mean I would not call this a formal QC pass. Using the same run as both standard and sample checks shape and processing, rather than independently verifying response scaling.”
+The measured blend curve is plotted against the supplied reference values. Its two main rises and plateau near 50% recovery reflect the blend's two fractions. The comparison also reports temperature differences for review.
 
-## 4. Apply the workflow to Bitumen 1
+This run reports 99.875% recovery with extension to C118. It uses the same chromatogram as standard and sample, so it checks the distribution shape without providing an independent recovery check. Reference tolerances still need to be assessed separately.
 
-![Bitumen 1 recovery distribution](docs/images/bitumen_1_distribution.png)
+## Bitumen 1
 
-“The example shows a broad distribution with a high-carbon tail. The captured analysis reports 60.282% recovery within C5–C112. The histogram and cumulative curve share one integral, so the two views have the same mass basis.”
+![Bitumen 1 carbon distribution and cumulative recovery](docs/images/bitumen_1_distribution.png)
 
-## Engineering contribution
+Blue bars show recovery in each carbon interval, and the red curve shows cumulative recovery. This run reports 60.282% within C5–C112, with a broad distribution and a tail toward higher carbon numbers.
 
-“The main software work was connecting calibration, interactive review, blank correction, gravimetric scaling, consistent integration, visualization, and export. I also corrected partial-bin integration and synchronized calibration imports with the peak plot. This demonstrates how I translate an experimental workflow into scientific software while keeping assumptions visible.”
+The histogram and cumulative curve use the same integral. Signal outside the selected range is excluded from the reported recovery. The completed-analysis summary shows that no extension was applied in this screenshot.
 
-These screenshots demonstrate analytical data processing. The application does not perform EOS characterization, K-value estimation, or flash calculations. It complements those projects rather than replacing them.
+## Development
+
+The application replaces a script-based analysis with an interface for reviewing calibration, entering sample masses, comparing results, and exporting data. Recent fixes made recovery calculations consistent across plots and ensured imported calibration peaks refresh on screen.
