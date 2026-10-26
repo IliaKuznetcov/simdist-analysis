@@ -20,6 +20,22 @@ The standard and Polywax chromatograms provide peaks for calibration. Users can 
 
 The selected peaks link retention time to equivalent carbon number and boiling point. The supplied calibration covers C5–C112, corresponding to 36–744 °C.
 
+## From signal area to recovery
+
+The standard's material fraction and blank-corrected area give the response factor:
+
+$
+RF=\frac{M_{\mathrm{std}}}{M_{\mathrm{std}}+M_{\mathrm{sol,std}}}\frac{1}{A_{\mathrm{std}}}
+$
+
+The sample's material/solvent masses then convert its selected-range area into recovery:
+
+$
+R_{\mathrm{range}}=100\,RF\,\frac{M_{\mathrm{smp}}+M_{\mathrm{sol,smp}}}{M_{\mathrm{smp}}}\,A_{\mathrm{smp,range}}
+$
+
+Carbon boundaries use linearly interpolated retention times. Integrating between them gives each histogram bar. The BP curve uses the same cumulative integral, with retention times converted to temperature by PCHIP interpolation. See [README.md](README.md#calculation-and-interpretation) for the variable definitions.
+
 ## Gravimetric-blend comparison
 
 ![Gravimetric blend compared with reference values](docs/images/gravimetric_reference_comparison.png)
