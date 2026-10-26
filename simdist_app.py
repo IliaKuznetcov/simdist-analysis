@@ -23,7 +23,7 @@ from PySide6.QtWidgets import (
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as NavigationToolbar
-
+from PySide6.QtGui import QIcon
 
 # -----------------------------
 # Data structures
@@ -2403,6 +2403,7 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon(str(Path(__file__).resolve().parent / "SIMDIST.png")))
     win = MainWindow()
     win.show()
     sys.exit(app.exec())
