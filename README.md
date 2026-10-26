@@ -47,15 +47,15 @@ Signals are aligned to the standard time grid, clipped at zero, blank-subtracted
 
 The gravimetric standard sets the response factor:
 
-$
+```math
 RF=\frac{M_{\mathrm{std}}}{M_{\mathrm{std}}+M_{\mathrm{sol,std}}}\frac{1}{A_{\mathrm{std}}}
-$
+```
 
 Recovery within the selected carbon range is:
 
-$
+```math
 R_{\mathrm{range}}=100\,RF\,\frac{M_{\mathrm{smp}}+M_{\mathrm{sol,smp}}}{M_{\mathrm{smp}}}\,A_{\mathrm{smp,range}}
-$
+```
 
 | Symbol | Meaning |
 | --- | --- |
@@ -77,15 +77,15 @@ Use the same mass unit throughout. Response scaling assumes comparable injection
 
 When enabled, the app fits a quadratic in the natural logarithm of carbon number to the high-carbon calibration points (C44 and above by default):
 
-$
+```math
 f(C)=a+b\ln C+c(\ln C)^2
-$
+```
 
 The least-squares fit is shifted to meet the last calibrated point:
 
-$
+```math
 t_{\mathrm{ext}}(C)=f(C)+t_{\max}-f(C_{\max})
-$
+```
 
 Here, C_max and t_max are the last calibrated carbon number and retention time. Predicted times are evaluated at successive integer carbon numbers up to the requested maximum. Each time is constrained to exceed the preceding boundary by at least 0.000001 min. If fewer than three points meet the fitting threshold, the app uses the final calibration points instead; at least three are required.
 
@@ -95,9 +95,9 @@ The extension estimates where additional carbon-bin boundaries fall. It does not
 
 This is a separate option. Inside the calibrated interval, temperature follows the PCHIP retention-time/BP curve. Beyond the final point, the app uses a straight line with that curve's endpoint slope:
 
-$
+```math
 T_{\mathrm{ext}}(t)=T_{\max}+T'_{\mathrm{PCHIP}}(t_{\max})(t-t_{\max})
-$
+```
 
 The lower endpoint is handled analogously. With BP extrapolation off, values outside the calibrated interval are clamped to the nearest endpoint temperature. Extending carbon bins alone therefore does not provide new calibrated boiling points.
 
