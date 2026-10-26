@@ -41,7 +41,37 @@ Optional peak editing, plot navigation, and a gravimetric-blend reference check 
 
 ## Calculation and interpretation
 
-Signals are aligned to the standard time grid, clipped at zero, blank-subtracted, and clipped again. The standard area and material/solvent mass ratios set the response scale. One piecewise-linear integral supplies carbon-bin areas and the BP curve, including partial acquisition intervals at bin boundaries.
+Signals are aligned to the standard time grid, clipped at zero, blank-subtracted, and clipped again.
+
+### Response factor and recovery
+
+The gravimetric standard sets the response factor:
+
+$
+RF=\frac{M_{\mathrm{std}}}{M_{\mathrm{std}}+M_{\mathrm{sol,std}}}\frac{1}{A_{\mathrm{std}}}
+$
+
+Recovery within the selected carbon range is:
+
+$
+R_{\mathrm{range}}=100\,RF\,\frac{M_{\mathrm{smp}}+M_{\mathrm{sol,smp}}}{M_{\mathrm{smp}}}\,A_{\mathrm{smp,range}}
+$
+
+| Symbol | Meaning |
+| --- | --- |
+| M_std, M_sol,std | Standard material and solvent masses |
+| M_smp, M_sol,smp | Sample material and solvent masses |
+| A_std | Blank-corrected standard area over its acquisition interval |
+| A_smp,range | Blank-corrected sample area between the selected carbon boundaries |
+
+Use the same mass unit throughout. Response scaling assumes comparable injection conditions and detector response for the standard and sample.
+
+### Calibration mapping and integration
+
+1. Assign known carbon numbers to selected standard and Polywax peaks, then obtain their boiling points from the paraffin lookup table.
+2. Linearly interpolate retention time at each integer carbon boundary.
+3. Integrate the corrected sample signal between those boundaries. A piecewise-linear signal integral includes partial acquisition intervals at bin edges.
+4. For the BP curve, find the retention time at each cumulative-recovery level using the same integral, then convert time to boiling point with PCHIP interpolation of the calibration points.
 
 Cumulative recovery starts at zero at the lower selected carbon boundary and ends at the selected-range total. Results remain on a sample-mass basis; they are not normalized to 100%. BP mapping uses shape-preserving interpolation of the calibration points. Extension beyond the measured range is an estimate, marked on the plots.
 
